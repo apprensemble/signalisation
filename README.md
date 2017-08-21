@@ -13,6 +13,7 @@ Le tout sera synchronisé.
   * Il se déclanchera 1 seconde après le rouge route
   * Et s'arretera 1 seconde avant le vert route
 * Le rouge pieton s'allumera à l'extinction du vert pieton. 
-  Regle speciale. En cas d'appuit sur le bouton le feux orange de route s'allumera immediatement.
 
-NB : cela me semble évident mais je précise que le feux de route ne peut avoir qu'une couleur à la fois.
+    Regle speciale. En cas d'appuit sur le bouton le feux orange de route s'allumera immediatement.
+
+### NB : cela me semble évident mais je précise que le feux de route ne peut avoir qu'une couleur à la fois.
