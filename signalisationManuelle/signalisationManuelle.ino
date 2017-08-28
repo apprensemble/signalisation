@@ -1,41 +1,72 @@
-int etatBouton = 0;
 const int vertRoute = 11;
 const int orangeRoute = 12;
 const int rougeRoute = 13;
-const int rougePieton = 4;
-const int vertPieton = 5;
-const int bip = 3;
-const int bouton = 2;
+
+const int rougePieton = 5;
+const int vertPieton = 6;
+const int orangePieton = 7;
+
+int etatBoutonVert = 0;
+int etatPrecedentVert = 3;
+
+int etatBoutonOrange = 0;
+int etatPrecedentOrange = 3;
+
+int etatBoutonRouge = 0;
+int etatPrecedentRouge = 3;
+
+
+const int boutonVert = 2;
+const int boutonOrange = 3;
+const int boutonRouge = 4;
+
 long heureActuelle = 0;
 long heureBoutonAction = 0;
 int tempsLimiteFeuRouge = 5000;
-int etatPrecedent = 3;
  
 void setup() {
   Serial.begin(9600);
-  pinMode(bouton, INPUT);
+  pinMode(boutonVert, INPUT);
+  pinMode(boutonOrange, INPUT);
+  pinMode(boutonRouge, INPUT);
   //pinMode(bip, OUTPUT);
   pinMode(vertRoute, OUTPUT);
   pinMode(orangeRoute, OUTPUT);
   pinMode(rougeRoute, OUTPUT);
   pinMode(vertPieton, OUTPUT);
   pinMode(rougePieton, OUTPUT);
+  pinMode(orangePieton, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   heureActuelle = millis();
-  etatPrecedent = etatBouton;
-  etatBouton = digitalRead(bouton);
-  if (etatPrecedent != etatBouton) {
-    Serial.println(etatBouton);  
-  }
-  if (etatBouton) {
+  etatPrecedentRouge = etatBoutonRouge;
+  etatBoutonRouge = digitalRead(boutonRouge);
+  etatBoutonVert = digitalRead(boutonVert);
+  etatBoutonOrange = digitalRead(boutonOrange);
+  //if (etatPrecedentRouge != etatBoutonRouge) {
+    Serial.print(etatBoutonRouge);
+    Serial.print(" ");
+    Serial.print(etatBoutonOrange);
+    Serial.print(" ");
+    Serial.println(etatBoutonVert);  
+  //}
+  if (etatBoutonRouge) {
     heureBoutonAction = millis();
-    feu_rouge();
+    reset_feux();
+    allume(rougeRoute);
+    allume(rougePieton);
   }
-  else {
-    feu_vert();
+  else if(etatBoutonVert) {
+    reset_feux();
+    allume(vertRoute);
+    allume(vertPieton);
+  }
+  else if (etatBoutonOrange) {
+    reset_feux();
+    allume(orangeRoute);
+    allume(orangePieton);
   }
 
 }
@@ -46,6 +77,7 @@ void reset_feux() {
   eteint(rougeRoute);
   eteint(vertPieton);
   eteint(rougePieton);
+  eteint(orangePieton);
 }
 
 void allume(int feu) {

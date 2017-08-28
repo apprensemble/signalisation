@@ -26,3 +26,12 @@ Le tout sera synchronisé.
 4) gestion d'interruption avec le bouton
 5) clignotement du vert pieton avant de passer au rouge pieton
 6) gestion buzzer
+
+### bonus
+
+* signalisation manuelle
+  * l'idée est de pouvoir controler manuellement les feux. Cette signalisation est composée d'un poste de controle avec des boutons pour chaque feu de signalisation et des leds indicatrice du bouton activé. La seconde partie est le feu tricolore controlé. C'est simple mais plus amusant qu'une matrice de feux automatiques synchronisés.
+
+# INFOS
+
+J'ai une projet de miniville et la signalisation est une petite partie de ce projet.
